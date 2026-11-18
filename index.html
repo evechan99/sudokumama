@@ -90,6 +90,150 @@
             font-weight: 500;
         }
 
+        /* 頂部遊戲模式切換分頁列 (Tab Navigation) */
+        .game-tabs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .game-tab-btn {
+            background-color: #F5F2EB;
+            border: 2.5px solid #D6CEBA;
+            color: var(--text-dark);
+            border-radius: 14px;
+            padding: 11px 8px;
+            font-size: calc(1.02rem * var(--font-scale));
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: all 0.15s;
+        }
+
+        .game-tab-btn:active {
+            transform: scale(0.97);
+        }
+
+        .game-tab-btn.active {
+            background-color: var(--primary);
+            border-color: var(--primary-dark);
+            color: #FFFFFF;
+            box-shadow: 0 4px 10px rgba(42, 111, 104, 0.25);
+        }
+
+        .game-view.hidden {
+            display: none !important;
+        }
+
+        .game-view {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* 萌寵花果消消樂專屬樣式 */
+        .m3-progress-wrap {
+            background: var(--card-bg);
+            border: 2px solid #E5DEC9;
+            border-radius: 14px;
+            padding: 10px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .m3-progress-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: calc(0.92rem * var(--font-scale));
+            font-weight: 800;
+            color: var(--primary-dark);
+        }
+
+        .m3-progress-bar {
+            width: 100%;
+            height: 14px;
+            background-color: #EFECE6;
+            border-radius: 999px;
+            overflow: hidden;
+            border: 1px solid #D6CEBA;
+        }
+
+        .m3-progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #34D399, #2A6F68);
+            border-radius: 999px;
+            transition: width 0.3s ease;
+        }
+
+        .m3-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            grid-template-rows: repeat(7, 1fr);
+            gap: 5px;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            background-color: #EFECE6;
+            padding: 6px;
+            border-radius: 14px;
+            border: 2.5px solid #D6CEBA;
+        }
+
+        .m3-tile {
+            background-color: #FFFFFF;
+            border: 2px solid #E5DEC9;
+            border-bottom-width: 3.5px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: calc(1.75rem * var(--font-scale));
+            cursor: pointer;
+            transition: transform 0.14s, background-color 0.14s, border-color 0.14s;
+            position: relative;
+        }
+
+        .m3-tile:active {
+            transform: scale(0.92);
+        }
+
+        .m3-tile.selected {
+            background-color: #FEF3C7;
+            border-color: #D97706;
+            transform: scale(1.08);
+            box-shadow: 0 4px 10px rgba(217, 119, 6, 0.28);
+            z-index: 2;
+        }
+
+        .m3-tile.hinted {
+            background-color: #D1FAE5;
+            border-color: #10B981;
+            animation: m3Pulse 0.8s ease-in-out infinite;
+        }
+
+        .m3-tile.matched {
+            transform: scale(0.2);
+            opacity: 0;
+            background-color: #FDE68A;
+        }
+
+        @keyframes m3Pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.09); }
+        }
+
+        .m3-tools-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
         .font-toggle-btn {
             background-color: var(--accent-light);
             color: #92400E;
@@ -542,7 +686,7 @@
             background: #FFFFFF;
             border: 3px solid #F59E0B;
             border-radius: 24px;
-            padding: 24px 20px;
+            padding: 22px 20px;
             max-width: 400px;
             width: 100%;
             text-align: center;
@@ -551,22 +695,33 @@
             z-index: 1002;
         }
 
-        .modal-emoji {
-            font-size: 3.5rem;
-            margin-bottom: 8px;
+        /* 貴婦小狗給讚插圖容器與輕快跳動動畫 */
+        .poodle-celebration {
+            width: 136px;
+            height: 124px;
+            margin: 0 auto 6px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: poodleBounce 1.4s ease-in-out infinite;
+        }
+
+        @keyframes poodleBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
         }
 
         .modal-title {
-            font-size: calc(1.5rem * var(--font-scale));
+            font-size: calc(1.45rem * var(--font-scale));
             font-weight: 800;
             color: var(--primary-dark);
             margin: 0 0 8px 0;
         }
 
         .modal-desc {
-            font-size: calc(1.05rem * var(--font-scale));
+            font-size: calc(1.02rem * var(--font-scale));
             color: var(--text-dark);
-            margin: 0 0 16px 0;
+            margin: 0 0 14px 0;
             line-height: 1.5;
         }
 
@@ -574,8 +729,8 @@
             background: #FDFBF7;
             border: 1.5px solid #E5DEC9;
             border-radius: 14px;
-            padding: 12px;
-            margin-bottom: 18px;
+            padding: 11px;
+            margin-bottom: 16px;
             font-size: calc(0.95rem * var(--font-scale));
             font-weight: 700;
             color: var(--primary-dark);
@@ -620,13 +775,23 @@
         <header class="header-card">
             <div class="header-top">
                 <div class="title-group">
-                    <h1>🧩 每日數獨</h1>
-                    <p>媽媽的健腦小天地 · 訓練思維與記憶</p>
+                    <h1 id="main-app-title">🧩 媽媽的健腦小天地</h1>
+                    <p id="main-app-subtitle">每日輕鬆動動腦 · 訓練思維、記憶與觀察力</p>
                 </div>
                 <button type="button" id="font-toggle-btn" class="font-toggle-btn" aria-label="切換特大字體">
                     🔍 特大字體
                 </button>
             </div>
+
+            <!-- 遊戲切換大按鈕分頁列 -->
+            <nav class="game-tabs" aria-label="選擇遊戲">
+                <button type="button" class="game-tab-btn active" id="tab-sudoku" data-game="sudoku">
+                    🧩 每日數獨
+                </button>
+                <button type="button" class="game-tab-btn" id="tab-match3" data-game="match3">
+                    🌸 萌寵花果消消樂
+                </button>
+            </nav>
 
             <div class="schedule-banner">
                 <div class="schedule-date">
@@ -639,95 +804,241 @@
             </div>
         </header>
 
-        <!-- 成就記錄與可選計時器 -->
-        <section class="stats-row" aria-label="練習記錄">
-            <div class="stat-box">
-                <span class="stat-label">🏆 已完成題數</span>
-                <span class="stat-value" id="stat-solved">0 題</span>
-            </div>
-            <div class="stat-box">
-                <span class="stat-label">🔥 連續打卡</span>
-                <span class="stat-value" id="stat-streak">0 日</span>
-            </div>
-            <div class="stat-box">
-                <span class="stat-label">⏱️ 輕鬆計時</span>
-                <div id="timer-container">
-                    <button type="button" id="timer-toggle-btn" class="timer-toggle-btn">顯示時間</button>
+        <!-- ==================== 遊戲一：每日數獨 ==================== -->
+        <div id="view-sudoku" class="game-view">
+            <!-- 成就記錄與可選計時器 -->
+            <section class="stats-row" aria-label="練習記錄">
+                <div class="stat-box">
+                    <span class="stat-label">🏆 已完成題數</span>
+                    <span class="stat-value" id="stat-solved">0 題</span>
                 </div>
+                <div class="stat-box">
+                    <span class="stat-label">🔥 連續打卡</span>
+                    <span class="stat-value" id="stat-streak">0 日</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">⏱️ 輕鬆計時</span>
+                    <div id="timer-container">
+                        <button type="button" id="timer-toggle-btn" class="timer-toggle-btn">顯示時間</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 三種難度切換 -->
+            <section class="difficulty-bar" aria-label="選擇難度">
+                <button type="button" class="diff-btn active" data-diff="6x6">
+                    <span>輕鬆 6×6</span>
+                    <span class="sub">暖身推薦</span>
+                </button>
+                <button type="button" class="diff-btn" data-diff="9x9-easy">
+                    <span>標準 9×9</span>
+                    <span class="sub">經典簡單</span>
+                </button>
+                <button type="button" class="diff-btn" data-diff="9x9-medium">
+                    <span>進階 9×9</span>
+                    <span class="sub">動腦挑戰</span>
+                </button>
+            </section>
+
+            <!-- 貼心引導訊息區 -->
+            <div class="coach-banner" id="coach-banner" role="status" aria-live="polite">
+                <span class="coach-icon" id="coach-icon">🌼</span>
+                <span id="coach-text">歡迎！點選任何一個空白格子，再按下方數字鍵就可以開始玩啦。</span>
             </div>
-        </section>
 
-        <!-- 三種難度切換 -->
-        <section class="difficulty-bar" aria-label="選擇難度">
-            <button type="button" class="diff-btn active" data-diff="6x6">
-                <span>輕鬆 6×6</span>
-                <span class="sub">暖身推薦</span>
-            </button>
-            <button type="button" class="diff-btn" data-diff="9x9-easy">
-                <span>標準 9×9</span>
-                <span class="sub">經典簡單</span>
-            </button>
-            <button type="button" class="diff-btn" data-diff="9x9-medium">
-                <span>進階 9×9</span>
-                <span class="sub">動腦挑戰</span>
-            </button>
-        </section>
+            <!-- 數獨棋盤 -->
+            <main class="board-wrapper">
+                <div id="sudoku-grid" class="sudoku-grid grid-6" role="grid" aria-label="數獨棋盤"></div>
+            </main>
 
-        <!-- 貼心引導訊息區 -->
-        <div class="coach-banner" id="coach-banner" role="status" aria-live="polite">
-            <span class="coach-icon" id="coach-icon">🌼</span>
-            <span id="coach-text">歡迎！點選任何一個空白格子，再按下方數字鍵就可以開始玩啦。</span>
+            <!-- 數字輸入鍵盤 -->
+            <section id="numpad" class="numpad pad-6" aria-label="數字鍵盤"></section>
+
+            <!-- 輔助工具按鈕 -->
+            <section class="tools-grid" aria-label="輔助工具">
+                <button type="button" class="tool-btn" id="btn-note">
+                    <span class="t-icon">✏️</span>
+                    <span>筆記模式</span>
+                </button>
+                <button type="button" class="tool-btn" id="btn-clear">
+                    <span class="t-icon">🧹</span>
+                    <span>清除</span>
+                </button>
+                <button type="button" class="tool-btn" id="btn-check">
+                    <span class="t-icon">🔍</span>
+                    <span>幫我檢查</span>
+                </button>
+                <button type="button" class="tool-btn hint-btn" id="btn-hint">
+                    <span class="t-icon">💡</span>
+                    <span>貼心提示</span>
+                </button>
+            </section>
+
+            <!-- 每日題目與額外練習按鈕 -->
+            <section class="bottom-actions">
+                <button type="button" class="action-main-btn btn-daily" id="btn-today-puzzle">
+                    📅 玩今日每日題
+                </button>
+                <button type="button" class="action-main-btn btn-practice" id="btn-new-practice">
+                    🎲 練習新題
+                </button>
+            </section>
         </div>
 
-        <!-- 數獨棋盤 -->
-        <main class="board-wrapper">
-            <div id="sudoku-grid" class="sudoku-grid grid-6" role="grid" aria-label="數獨棋盤"></div>
-        </main>
+        <!-- ==================== 遊戲二：萌寵花果消消樂 ==================== -->
+        <div id="view-match3" class="game-view hidden">
+            <!-- 消消樂統計列 -->
+            <section class="stats-row" aria-label="消消樂記錄">
+                <div class="stat-box">
+                    <span class="stat-label">⭐ 目前分數</span>
+                    <span class="stat-value" id="m3-score">0 分</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">🎯 過關目標</span>
+                    <span class="stat-value" id="m3-target">300 分</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">🏅 消消樂過關</span>
+                    <span class="stat-value" id="m3-solved">0 關</span>
+                </div>
+            </section>
 
-        <!-- 數字輸入鍵盤 -->
-        <section id="numpad" class="numpad pad-6" aria-label="數字鍵盤"></section>
+            <!-- 輕鬆進度條 -->
+            <div class="m3-progress-wrap">
+                <div class="m3-progress-top">
+                    <span id="m3-level-label">🌸 今日休閒第 1 關（無時間限制）</span>
+                    <span id="m3-progress-pct">0%</span>
+                </div>
+                <div class="m3-progress-bar">
+                    <div class="m3-progress-fill" id="m3-progress-fill"></div>
+                </div>
+            </div>
 
-        <!-- 輔助工具按鈕 -->
-        <section class="tools-grid" aria-label="輔助工具">
-            <button type="button" class="tool-btn" id="btn-note">
-                <span class="t-icon">✏️</span>
-                <span>筆記模式</span>
-            </button>
-            <button type="button" class="tool-btn" id="btn-clear">
-                <span class="t-icon">🧹</span>
-                <span>清除</span>
-            </button>
-            <button type="button" class="tool-btn" id="btn-check">
-                <span class="t-icon">🔍</span>
-                <span>幫我檢查</span>
-            </button>
-            <button type="button" class="tool-btn hint-btn" id="btn-hint">
-                <span class="t-icon">💡</span>
-                <span>貼心提示</span>
-            </button>
-        </section>
+            <!-- 消消樂貼心引導區 -->
+            <div class="coach-banner" role="status" aria-live="polite">
+                <span class="coach-icon" id="m3-coach-icon">🐶</span>
+                <span id="m3-coach-text">點選兩個相鄰嘅可愛圖案交換位置，連成 3 個或以上相同圖案就可以消除得分啦！</span>
+            </div>
 
-        <!-- 每日題目與額外練習按鈕 -->
-        <section class="bottom-actions">
-            <button type="button" class="action-main-btn btn-daily" id="btn-today-puzzle">
-                📅 玩今日每日題
-            </button>
-            <button type="button" class="action-main-btn btn-practice" id="btn-new-practice">
-                🎲 練習新題
-            </button>
-        </section>
+            <!-- 7x7 消消樂棋盤 -->
+            <main class="board-wrapper">
+                <div id="m3-grid" class="m3-grid" role="grid" aria-label="萌寵花果消消樂棋盤"></div>
+            </main>
+
+            <!-- 消消樂輔助按鈕 -->
+            <section class="m3-tools-grid" aria-label="消消樂輔助工具">
+                <button type="button" class="tool-btn hint-btn" id="m3-btn-hint">
+                    <span class="t-icon">💡</span>
+                    <span>貼心提示</span>
+                </button>
+                <button type="button" class="tool-btn" id="m3-btn-shuffle">
+                    <span class="t-icon">🔄</span>
+                    <span>重新洗牌</span>
+                </button>
+            </section>
+
+            <!-- 消消樂每日關卡 / 自由新關按鈕 -->
+            <section class="bottom-actions">
+                <button type="button" class="action-main-btn btn-daily" id="m3-btn-daily">
+                    📅 玩今日每日關
+                </button>
+                <button type="button" class="action-main-btn btn-practice" id="m3-btn-practice">
+                    🎲 開啟自由新關
+                </button>
+            </section>
+        </div>
     </div>
 
     <!-- 彩帶慶祝畫布 -->
     <canvas id="confetti-canvas"></canvas>
 
-    <!-- 過關祝賀彈窗 -->
+    <!-- 過關祝賀彈窗（含可愛毛茸茸白色貴婦小狗給讚插圖） -->
     <div class="modal-overlay" id="win-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <div class="modal-card">
-            <div class="modal-emoji">🎉🌸👏</div>
-            <h2 class="modal-title" id="modal-title">太叻啦！成功過關！</h2>
+            <div class="poodle-celebration" aria-hidden="true">
+                <svg viewBox="0 0 180 165" width="136" height="124" xmlns="http://www.w3.org/2000/svg">
+                    <!-- 溫暖粉黃圓形背景光暈 -->
+                    <circle cx="88" cy="84" r="70" fill="#FEF3C7" stroke="#FCD34D" stroke-width="3"/>
+                    
+                    <!-- 飄浮小愛心 -->
+                    <path d="M32 45 C32 39, 23 39, 23 45 C23 51, 32 57, 32 57 C32 57, 41 51, 41 45 C41 39, 32 39, 32 45 Z" fill="#F43F5E"/>
+                    <path d="M142 36 C142 32, 136 32, 136 36 C136 40, 142 44, 142 44 C142 44, 148 40, 148 36 C148 32, 142 32, 142 36 Z" fill="#FB7185"/>
+
+                    <!-- 毛茸茸垂耳（左） -->
+                    <g fill="#FFFDF9" stroke="#C7BFA9" stroke-width="2.5">
+                        <circle cx="48" cy="68" r="13"/>
+                        <circle cx="43" cy="82" r="14"/>
+                        <circle cx="46" cy="96" r="12"/>
+                        <circle cx="56" cy="90" r="11"/>
+                    </g>
+
+                    <!-- 毛茸茸垂耳（右） -->
+                    <g fill="#FFFDF9" stroke="#C7BFA9" stroke-width="2.5">
+                        <circle cx="124" cy="68" r="13"/>
+                        <circle cx="129" cy="82" r="14"/>
+                        <circle cx="126" cy="96" r="12"/>
+                        <circle cx="116" cy="90" r="11"/>
+                    </g>
+
+                    <!-- 身體與毛茸茸胸毛 -->
+                    <path d="M58 115 C54 134, 118 134, 114 115 Z" fill="#FFFDF9" stroke="#C7BFA9" stroke-width="2.5"/>
+                    <circle cx="72" cy="122" r="11" fill="#FFFDF9" stroke="#C7BFA9" stroke-width="2"/>
+                    <circle cx="86" cy="125" r="12" fill="#FFFDF9" stroke="#C7BFA9" stroke-width="2"/>
+                    <circle cx="100" cy="122" r="11" fill="#FFFDF9" stroke="#C7BFA9" stroke-width="2"/>
+
+                    <!-- 可愛粉紅蝴蝶結 -->
+                    <polygon points="86,113 75,107 75,119" fill="#F472B6"/>
+                    <polygon points="86,113 97,107 97,119" fill="#F472B6"/>
+                    <circle cx="86" cy="113" r="4" fill="#DB2777"/>
+
+                    <!-- 貴婦狗圓潤臉蛋 -->
+                    <ellipse cx="86" cy="82" rx="34" ry="31" fill="#FFFFFF" stroke="#C7BFA9" stroke-width="2.5"/>
+
+                    <!-- 頭頂蓬鬆卷毛雲朵 -->
+                    <g fill="#FFFFFF" stroke="#C7BFA9" stroke-width="2.5">
+                        <circle cx="65" cy="54" r="12"/>
+                        <circle cx="79" cy="48" r="14"/>
+                        <circle cx="95" cy="48" r="14"/>
+                        <circle cx="108" cy="55" r="12"/>
+                        <circle cx="87" cy="56" r="13" stroke="none"/>
+                    </g>
+
+                    <!-- 開心彎彎笑眼 -->
+                    <path d="M68 78 Q74 71 80 78" fill="none" stroke="#26231F" stroke-width="3.2" stroke-linecap="round"/>
+                    <path d="M92 78 Q98 71 104 78" fill="none" stroke="#26231F" stroke-width="3.2" stroke-linecap="round"/>
+
+                    <!-- 粉嫩腮紅 -->
+                    <ellipse cx="64" cy="87" rx="6" ry="4" fill="#FDA4AF" opacity="0.75"/>
+                    <ellipse cx="108" cy="87" rx="6" ry="4" fill="#FDA4AF" opacity="0.75"/>
+
+                    <!-- 黑亮小鼻子與微笑嘴巴 -->
+                    <ellipse cx="86" cy="86" rx="5.5" ry="4" fill="#26231F"/>
+                    <circle cx="84.5" cy="84.8" r="1.4" fill="#FFFFFF"/>
+                    <path d="M79 93 Q86 100 93 93" fill="none" stroke="#26231F" stroke-width="2.6" stroke-linecap="round"/>
+                    <path d="M83 96 Q86 102 89 96" fill="#FB7185"/>
+
+                    <!-- 右側舉起給讚的毛茸茸小肉球 👍 -->
+                    <g transform="translate(124, 92)">
+                        <rect x="6" y="16" width="22" height="24" rx="11" fill="#FFFFFF" stroke="#C7BFA9" stroke-width="2.5"/>
+                        <!-- 大拇指給讚 -->
+                        <path d="M12 18 L12 6 C12 2, 19 2, 19 6 L19 16" fill="#FFFFFF" stroke="#C7BFA9" stroke-width="2.5" stroke-linecap="round"/>
+                        <!-- 粉紅小肉球掌心 -->
+                        <ellipse cx="17" cy="27" rx="5.5" ry="4.5" fill="#FDA4AF"/>
+                        <circle cx="12" cy="21" r="2" fill="#FDA4AF"/>
+                        <circle cx="17" cy="19.5" r="2" fill="#FDA4AF"/>
+                        <circle cx="22" cy="21" r="2" fill="#FDA4AF"/>
+                    </g>
+
+                    <!-- 給讚閃亮光芒 -->
+                    <line x1="154" y1="88" x2="162" y2="83" stroke="#F59E0B" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="157" y1="98" x2="166" y2="98" stroke="#F59E0B" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="146" y1="81" x2="149" y2="73" stroke="#F59E0B" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+            </div>
+
+            <h2 class="modal-title" id="modal-title">狗狗畀個讚！媽媽好叻呀！</h2>
             <p class="modal-desc" id="modal-praise">
-                媽媽思維好清晰、觀察力好敏銳！每日動動腦筋，越玩越精靈！
+                毛茸茸貴婦狗狗為媽媽拍拍手！思維好清晰、觀察力好敏銳，越玩越精靈！
             </p>
             <div class="modal-stats" id="modal-stats-summary">
                 累計完成：1 題 ｜ 連續打卡：1 日
@@ -986,6 +1297,7 @@
             // 5. 遊戲狀態管理
             // ==========================================
             const state = {
+                activeGame: 'sudoku', // 'sudoku' 或 'match3'
                 difficulty: '6x6',
                 isDailyMode: true,
                 currentDailyDateKey: '',
@@ -996,8 +1308,8 @@
                 initial: [],
                 solution: [],
                 board: [],
-                notes: [], // 每個格子為 Set
-                errors: [], // 每個格子為 boolean
+                notes: [],
+                errors: [],
                 selectedIdx: null,
                 noteMode: false,
                 isCompleted: false,
@@ -1008,13 +1320,37 @@
                 stats: SafeStorage.get('mom_sudoku_stats', {
                     solvedCount: 0,
                     streakDays: 0,
-                    lastSolvedDate: ''
+                    lastSolvedDate: '',
+                    match3Solved: 0
                 })
             };
 
+            if (typeof state.stats.match3Solved !== 'number') {
+                state.stats.match3Solved = 0;
+            }
+
+            // ==========================================
+            // 5B. 萌寵花果消消樂狀態與核心邏輯
+            // ==========================================
+            const M3_SIZE = 7;
+            const M3_ITEMS = ['🐶', '🌸', '🍎', '🍊', '🍇', '🌻'];
+            const m3State = {
+                isDaily: true,
+                practiceSeedCount: 0,
+                levelNumber: 1,
+                board: [],
+                score: 0,
+                targetScore: 300,
+                selectedIdx: null,
+                hintPair: [],
+                isBusy: false,
+                levelCompleted: false,
+                rng: Math.random
+            };
+
             const PRAISE_MESSAGES = [
-                '媽媽思維好清晰、觀察力好敏銳！每日動動腦筋，越玩越精靈！',
-                '好犀利呀！一格一格推理得井井有條，邏輯能力一百分！',
+                '毛茸茸貴婦狗狗為媽媽拍拍手！思維好清晰、觀察力好敏銳，越玩越精靈！',
+                '好犀利呀！一格一格推理得井井有條，貴婦小狗舉起肉球畀一百分！',
                 '太棒啦！輕鬆解開今日數獨，幫大腦做了一次好舒服的體操！',
                 '真係好有耐心同智慧！全盤數字完全正確，值得飲杯靚茶獎勵下自己！'
             ];
@@ -1041,12 +1377,377 @@
                 btnHint: document.getElementById('btn-hint'),
                 btnTodayPuzzle: document.getElementById('btn-today-puzzle'),
                 btnNewPractice: document.getElementById('btn-new-practice'),
+                tabSudoku: document.getElementById('tab-sudoku'),
+                tabMatch3: document.getElementById('tab-match3'),
+                viewSudoku: document.getElementById('view-sudoku'),
+                viewMatch3: document.getElementById('view-match3'),
+                m3Score: document.getElementById('m3-score'),
+                m3Target: document.getElementById('m3-target'),
+                m3Solved: document.getElementById('m3-solved'),
+                m3LevelLabel: document.getElementById('m3-level-label'),
+                m3ProgressPct: document.getElementById('m3-progress-pct'),
+                m3ProgressFill: document.getElementById('m3-progress-fill'),
+                m3CoachIcon: document.getElementById('m3-coach-icon'),
+                m3CoachText: document.getElementById('m3-coach-text'),
+                m3Grid: document.getElementById('m3-grid'),
+                m3BtnHint: document.getElementById('m3-btn-hint'),
+                m3BtnShuffle: document.getElementById('m3-btn-shuffle'),
+                m3BtnDaily: document.getElementById('m3-btn-daily'),
+                m3BtnPractice: document.getElementById('m3-btn-practice'),
                 winModal: document.getElementById('win-modal'),
                 modalPraise: document.getElementById('modal-praise'),
                 modalStatsSummary: document.getElementById('modal-stats-summary'),
                 modalNextPractice: document.getElementById('modal-next-practice'),
                 modalCloseBtn: document.getElementById('modal-close-btn')
             };
+
+            function switchActiveGame(gameName) {
+                state.activeGame = gameName;
+                const isSudoku = gameName === 'sudoku';
+
+                els.tabSudoku.classList.toggle('active', isSudoku);
+                els.tabMatch3.classList.toggle('active', !isSudoku);
+                els.viewSudoku.classList.toggle('hidden', !isSudoku);
+                els.viewMatch3.classList.toggle('hidden', isSudoku);
+
+                if (isSudoku) {
+                    els.puzzleTypeBadge.textContent = state.isDailyMode ? '今日每日題' : '自由練習題';
+                    els.puzzleTypeBadge.classList.toggle('practice', !state.isDailyMode);
+                } else {
+                    els.puzzleTypeBadge.textContent = m3State.isDaily ? '今日每日關' : '自由休閒關';
+                    els.puzzleTypeBadge.classList.toggle('practice', !m3State.isDaily);
+                }
+            }
+
+            function setM3Coach(icon, text) {
+                els.m3CoachIcon.textContent = icon;
+                els.m3CoachText.textContent = text;
+            }
+
+            function updateM3StatsUI() {
+                els.m3Score.textContent = `${m3State.score} 分`;
+                els.m3Target.textContent = `${m3State.targetScore} 分`;
+                els.m3Solved.textContent = `${state.stats.match3Solved} 關`;
+
+                const pct = Math.min(100, Math.round((m3State.score / m3State.targetScore) * 100));
+                els.m3ProgressPct.textContent = `${pct}%`;
+                els.m3ProgressFill.style.width = `${pct}%`;
+                els.m3LevelLabel.textContent = m3State.isDaily
+                    ? `🌸 今日每日關（目標 ${m3State.targetScore} 分 · 無時間限制）`
+                    : `🎲 自由休閒第 ${m3State.levelNumber} 關（無時間限制）`;
+            }
+
+            function initMatch3(isDaily) {
+                const schedule = updateScheduleUI();
+                m3State.isDaily = isDaily;
+                m3State.score = 0;
+                m3State.selectedIdx = null;
+                m3State.hintPair = [];
+                m3State.isBusy = false;
+                m3State.levelCompleted = false;
+
+                if (isDaily) {
+                    m3State.targetScore = 300;
+                    m3State.rng = createMulberry32(`HK-M3-DAILY-${schedule.dateKey}`);
+                    setM3Coach('🐶', '今日萌寵花果消消樂開始啦！點選兩個相鄰圖案交換，連成 3 個相同即可消除！');
+                } else {
+                    m3State.practiceSeedCount += 1;
+                    m3State.levelNumber += 1;
+                    m3State.targetScore = 300;
+                    m3State.rng = createMulberry32(`HK-M3-PRAC-${Date.now()}-${m3State.practiceSeedCount}`);
+                    setM3Coach('🎲', '已開啟全新自由休閒關卡，慢慢觀察、輕鬆消消樂！');
+                }
+
+                if (state.activeGame === 'match3') {
+                    els.puzzleTypeBadge.textContent = isDaily ? '今日每日關' : '自由休閒關';
+                    els.puzzleTypeBadge.classList.toggle('practice', !isDaily);
+                }
+
+                // 生成無初始三連且保證至少有一組可移動的棋盤
+                let attempts = 0;
+                do {
+                    m3State.board = new Array(M3_SIZE * M3_SIZE).fill(0);
+                    for (let r = 0; r < M3_SIZE; r++) {
+                        for (let c = 0; c < M3_SIZE; c++) {
+                            const idx = r * M3_SIZE + c;
+                            const forbidden = new Set();
+                            if (c >= 2 && m3State.board[idx - 1] === m3State.board[idx - 2]) {
+                                forbidden.add(m3State.board[idx - 1]);
+                            }
+                            if (r >= 2 && m3State.board[idx - M3_SIZE] === m3State.board[idx - 2 * M3_SIZE]) {
+                                forbidden.add(m3State.board[idx - M3_SIZE]);
+                            }
+                            const candidates = [];
+                            for (let t = 0; t < M3_ITEMS.length; t++) {
+                                if (!forbidden.has(t)) candidates.push(t);
+                            }
+                            m3State.board[idx] = candidates[Math.floor(m3State.rng() * candidates.length)];
+                        }
+                    }
+                    attempts++;
+                } while (findValidM3Moves().length === 0 && attempts < 20);
+
+                updateM3StatsUI();
+                renderM3Board();
+            }
+
+            function renderM3Board(matchedSet = null) {
+                els.m3Grid.innerHTML = '';
+                for (let i = 0; i < M3_SIZE * M3_SIZE; i++) {
+                    const tile = document.createElement('div');
+                    tile.className = 'm3-tile';
+                    tile.setAttribute('role', 'gridcell');
+                    tile.textContent = M3_ITEMS[m3State.board[i]];
+
+                    if (m3State.selectedIdx === i) {
+                        tile.classList.add('selected');
+                    }
+                    if (m3State.hintPair.includes(i)) {
+                        tile.classList.add('hinted');
+                    }
+                    if (matchedSet && matchedSet.has(i)) {
+                        tile.classList.add('matched');
+                    }
+
+                    tile.addEventListener('click', () => handleM3TileClick(i));
+                    els.m3Grid.appendChild(tile);
+                }
+            }
+
+            function findM3Matches(board) {
+                const matched = new Set();
+                // 橫向掃描
+                for (let r = 0; r < M3_SIZE; r++) {
+                    let c = 0;
+                    while (c < M3_SIZE) {
+                        const val = board[r * M3_SIZE + c];
+                        let len = 1;
+                        while (c + len < M3_SIZE && board[r * M3_SIZE + c + len] === val) {
+                            len++;
+                        }
+                        if (len >= 3) {
+                            for (let k = 0; k < len; k++) {
+                                matched.add(r * M3_SIZE + c + k);
+                            }
+                        }
+                        c += len;
+                    }
+                }
+                // 直向掃描
+                for (let c = 0; c < M3_SIZE; c++) {
+                    let r = 0;
+                    while (r < M3_SIZE) {
+                        const val = board[r * M3_SIZE + c];
+                        let len = 1;
+                        while (r + len < M3_SIZE && board[(r + len) * M3_SIZE + c] === val) {
+                            len++;
+                        }
+                        if (len >= 3) {
+                            for (let k = 0; k < len; k++) {
+                                matched.add((r + k) * M3_SIZE + c);
+                            }
+                        }
+                        r += len;
+                    }
+                }
+                return matched;
+            }
+
+            function findValidM3Moves() {
+                const moves = [];
+                const dirs = [[0, 1], [1, 0]];
+                for (let r = 0; r < M3_SIZE; r++) {
+                    for (let c = 0; c < M3_SIZE; c++) {
+                        const idx1 = r * M3_SIZE + c;
+                        for (let d = 0; d < dirs.length; d++) {
+                            const nr = r + dirs[d][0];
+                            const nc = c + dirs[d][1];
+                            if (nr < M3_SIZE && nc < M3_SIZE) {
+                                const idx2 = nr * M3_SIZE + nc;
+                                if (m3State.board[idx1] === m3State.board[idx2]) continue;
+                                const copy = m3State.board.slice();
+                                const tmp = copy[idx1];
+                                copy[idx1] = copy[idx2];
+                                copy[idx2] = tmp;
+                                if (findM3Matches(copy).size > 0) {
+                                    moves.push([idx1, idx2]);
+                                }
+                            }
+                        }
+                    }
+                }
+                return moves;
+            }
+
+            function handleM3TileClick(idx) {
+                if (m3State.isBusy) return;
+                m3State.hintPair = [];
+
+                if (m3State.selectedIdx === null) {
+                    m3State.selectedIdx = idx;
+                    renderM3Board();
+                    return;
+                }
+
+                if (m3State.selectedIdx === idx) {
+                    m3State.selectedIdx = null;
+                    renderM3Board();
+                    return;
+                }
+
+                const prev = m3State.selectedIdx;
+                const r1 = Math.floor(prev / M3_SIZE);
+                const c1 = prev % M3_SIZE;
+                const r2 = Math.floor(idx / M3_SIZE);
+                const c2 = idx % M3_SIZE;
+
+                // 若點選非相鄰格子，直接改選新格子
+                if (Math.abs(r1 - r2) + Math.abs(c1 - c2) !== 1) {
+                    m3State.selectedIdx = idx;
+                    renderM3Board();
+                    return;
+                }
+
+                // 嘗試交換相鄰兩格
+                m3State.selectedIdx = null;
+                const tmp = m3State.board[prev];
+                m3State.board[prev] = m3State.board[idx];
+                m3State.board[idx] = tmp;
+
+                const initialMatches = findM3Matches(m3State.board);
+                if (initialMatches.size === 0) {
+                    // 無消除則還原並溫馨提醒
+                    m3State.board[idx] = m3State.board[prev];
+                    m3State.board[prev] = tmp;
+                    renderM3Board();
+                    setM3Coach('🌼', '呢兩個圖案交換後仲未連成 3 個相同喔，試下搵其他相鄰圖案啦！');
+                    return;
+                }
+
+                resolveM3Cascades(1);
+            }
+
+            function resolveM3Cascades(combo) {
+                m3State.isBusy = true;
+                const matched = findM3Matches(m3State.board);
+
+                if (matched.size === 0) {
+                    // 檢查是否還有可消除步數，若無則自動幫媽媽重新洗牌
+                    if (findValidM3Moves().length === 0) {
+                        shuffleM3Board(true);
+                    }
+                    m3State.isBusy = false;
+                    renderM3Board();
+                    checkM3Win();
+                    return;
+                }
+
+                const gained = matched.size * 10 * combo;
+                m3State.score += gained;
+                updateM3StatsUI();
+
+                if (combo > 1) {
+                    setM3Coach('🌟', `好厲害！連續消除 ${combo} 連擊，一口氣加咗 ${gained} 分！`);
+                } else {
+                    setM3Coach('✨', `消除成功！加咗 ${gained} 分，繼續加油！`);
+                }
+
+                renderM3Board(matched);
+
+                setTimeout(() => {
+                    // 下落補齊空位
+                    for (let c = 0; c < M3_SIZE; c++) {
+                        const survivors = [];
+                        for (let r = M3_SIZE - 1; r >= 0; r--) {
+                            const idx = r * M3_SIZE + c;
+                            if (!matched.has(idx)) {
+                                survivors.push(m3State.board[idx]);
+                            }
+                        }
+                        let writeR = M3_SIZE - 1;
+                        for (let s = 0; s < survivors.length; s++) {
+                            m3State.board[writeR * M3_SIZE + c] = survivors[s];
+                            writeR--;
+                        }
+                        while (writeR >= 0) {
+                            m3State.board[writeR * M3_SIZE + c] = Math.floor(m3State.rng() * M3_ITEMS.length);
+                            writeR--;
+                        }
+                    }
+                    renderM3Board();
+                    setTimeout(() => resolveM3Cascades(combo + 1), 220);
+                }, 260);
+            }
+
+            function shuffleM3Board(isAuto) {
+                if (m3State.isBusy && !isAuto) return;
+                let attempts = 0;
+                do {
+                    for (let i = m3State.board.length - 1; i > 0; i--) {
+                        const j = Math.floor(m3State.rng() * (i + 1));
+                        const t = m3State.board[i];
+                        m3State.board[i] = m3State.board[j];
+                        m3State.board[j] = t;
+                    }
+                    attempts++;
+                } while ((findM3Matches(m3State.board).size > 0 || findValidM3Moves().length === 0) && attempts < 30);
+
+                m3State.selectedIdx = null;
+                m3State.hintPair = [];
+                renderM3Board();
+                setM3Coach('🔄', isAuto
+                    ? '盤面已經冇得再連啦，貴婦狗狗自動幫你重新洗牌好喇！'
+                    : '已經幫你重新洗牌，睇下有邊三個可愛圖案可以連埋一齊！');
+            }
+
+            function handleM3Hint() {
+                if (m3State.isBusy) return;
+                const moves = findValidM3Moves();
+                if (moves.length === 0) {
+                    shuffleM3Board(true);
+                    return;
+                }
+                const pair = moves[0];
+                m3State.selectedIdx = null;
+                m3State.hintPair = pair;
+                renderM3Board();
+
+                const r1 = Math.floor(pair[0] / M3_SIZE) + 1;
+                const c1 = (pair[0] % M3_SIZE) + 1;
+                const r2 = Math.floor(pair[1] / M3_SIZE) + 1;
+                const c2 = (pair[1] % M3_SIZE) + 1;
+                setM3Coach('💡', `貼心提示：試下將閃亮綠色標示嘅兩個圖案（第 ${r1} 行第 ${c1} 列 同 第 ${r2} 行第 ${c2} 列）互相交換！`);
+            }
+
+            function checkM3Win() {
+                if (m3State.levelCompleted || m3State.score < m3State.targetScore) return;
+                m3State.levelCompleted = true;
+
+                const todayKey = state.currentDailyDateKey || getHKScheduleState().dateKey;
+                state.stats.match3Solved += 1;
+
+                if (state.stats.lastSolvedDate !== todayKey) {
+                    const parts = todayKey.split('-').map(Number);
+                    const d = new Date(parts[0], parts[1] - 1, parts[2]);
+                    d.setDate(d.getDate() - 1);
+                    const yesterdayKey = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+                    state.stats.streakDays = (state.stats.lastSolvedDate === yesterdayKey)
+                        ? state.stats.streakDays + 1
+                        : 1;
+                    state.stats.lastSolvedDate = todayKey;
+                }
+
+                SafeStorage.set('mom_sudoku_stats', state.stats);
+                updateStatsDisplay();
+                updateM3StatsUI();
+
+                els.modalPraise.textContent = `貴婦狗狗舉起肉球畀大讚！媽媽喺「萌寵花果消消樂」攞到 ${m3State.score} 分順利過關，眼明手快真係好犀利！`;
+                els.modalStatsSummary.textContent = `數獨完成：${state.stats.solvedCount} 題 ｜ 消消樂過關：${state.stats.match3Solved} 關`;
+                els.winModal.classList.add('show');
+
+                setM3Coach('🐶', '恭喜過關！貴婦狗狗畀個大讚！你可以繼續玩呢一盤或者開新關卡！');
+                launchConfetti();
+            }
 
             function setCoachMessage(icon, text) {
                 els.coachIcon.textContent = icon;
@@ -1104,12 +1805,10 @@
                 state.difficulty = difficulty;
                 state.isDailyMode = isDaily;
 
-                // 更新難度按鈕樣式
                 els.diffBtns.forEach(btn => {
                     btn.classList.toggle('active', btn.dataset.diff === difficulty);
                 });
 
-                // 更新徽章
                 if (isDaily) {
                     els.puzzleTypeBadge.textContent = '今日每日題';
                     els.puzzleTypeBadge.classList.remove('practice');
@@ -1118,7 +1817,6 @@
                     els.puzzleTypeBadge.classList.add('practice');
                 }
 
-                // 組合種子字串
                 let seedStr;
                 if (isDaily) {
                     seedStr = `HK-DAILY-9AM-${schedule.dateKey}-${difficulty}`;
@@ -1139,7 +1837,6 @@
                 state.isCompleted = false;
                 state.elapsedSeconds = 0;
 
-                // 預設選取第一個空白格方便直接輸入
                 const firstEmpty = state.board.findIndex(v => v === 0);
                 state.selectedIdx = firstEmpty !== -1 ? firstEmpty : 0;
 
@@ -1178,7 +1875,6 @@
                     cell.className = 'cell';
                     cell.setAttribute('role', 'gridcell');
 
-                    // 宮格粗框線邏輯
                     if ((col + 1) % state.boxCols === 0 && col !== size - 1) {
                         cell.classList.add('thick-right');
                     }
@@ -1194,7 +1890,6 @@
                         cell.classList.add('user-val');
                     }
 
-                    // 高亮同行、同列、同宮格
                     if (selIdx !== null) {
                         if (idx === selIdx) {
                             cell.classList.add('selected');
@@ -1210,7 +1905,6 @@
                         cell.classList.add('error');
                     }
 
-                    // 顯示數字或筆記小字
                     if (val !== 0) {
                         cell.textContent = String(val);
                     } else if (state.notes[idx].size > 0) {
@@ -1239,7 +1933,6 @@
                 els.numpad.className = `numpad ${size === 6 ? 'pad-6' : 'pad-9'}`;
                 els.numpad.innerHTML = '';
 
-                // 統計每個數字已填入數量
                 const counts = new Array(size + 1).fill(0);
                 state.board.forEach(v => {
                     if (v >= 1 && v <= size) counts[v]++;
@@ -1274,7 +1967,6 @@
                     return;
                 }
 
-                // 清除該格的錯誤標記
                 state.errors[idx] = false;
 
                 if (state.noteMode) {
@@ -1292,7 +1984,6 @@
                     return;
                 }
 
-                // 正式填入數字（若再按同一個數字則清除）
                 if (state.board[idx] === num) {
                     state.board[idx] = 0;
                 } else {
@@ -1376,7 +2067,6 @@
             function handleSmartHint() {
                 if (state.isCompleted) return;
 
-                // 優先找「目前只剩唯一一個合法候選數字」的空格，方便給予清晰邏輯解釋
                 const size = state.size;
                 let targetIdx = -1;
                 let reasonText = '';
@@ -1390,7 +2080,6 @@
 
                 if (emptyIndices.length === 0) return;
 
-                // 檢查是否有「單一候選數」格子
                 for (let k = 0; k < emptyIndices.length; k++) {
                     const idx = emptyIndices[k];
                     const r = Math.floor(idx / size);
@@ -1418,7 +2107,6 @@
                     }
                 }
 
-                // 若無單一候選數，則優先協助目前選取的空格或第一個未完成格子
                 if (targetIdx === -1) {
                     if (state.selectedIdx !== null && (state.board[state.selectedIdx] === 0 || state.board[state.selectedIdx] !== state.solution[state.selectedIdx])) {
                         targetIdx = state.selectedIdx;
@@ -1455,11 +2143,9 @@
                 state.isCompleted = true;
                 const todayKey = state.currentDailyDateKey || getHKScheduleState().dateKey;
 
-                // 更新已完成題數與連續打卡日數
                 state.stats.solvedCount += 1;
 
                 if (state.stats.lastSolvedDate !== todayKey) {
-                    // 計算昨日日期字串
                     const parts = todayKey.split('-').map(Number);
                     const d = new Date(parts[0], parts[1] - 1, parts[2]);
                     d.setDate(d.getDate() - 1);
@@ -1481,7 +2167,7 @@
                 els.modalStatsSummary.textContent = `累計完成：${state.stats.solvedCount} 題 ｜ 連續打卡：${state.stats.streakDays} 日`;
                 els.winModal.classList.add('show');
 
-                setCoachMessage('🎉', '恭喜過關！全部數字完全正確，真係好犀利！');
+                setCoachMessage('🐶', '貴婦狗狗畀個讚！全部數字完全正確，媽媽真係好犀利！');
                 launchConfetti();
             }
 
@@ -1572,14 +2258,25 @@
 
                 els.modalNextPractice.addEventListener('click', () => {
                     els.winModal.classList.remove('show');
-                    loadPuzzle(state.difficulty, false);
+                    if (state.activeGame === 'match3') {
+                        initMatch3(false);
+                    } else {
+                        loadPuzzle(state.difficulty, false);
+                    }
                 });
 
                 els.modalCloseBtn.addEventListener('click', () => {
                     els.winModal.classList.remove('show');
                 });
 
-                // 支援實體鍵盤方向鍵與數字鍵輸入
+                // 遊戲模式分頁與消消樂按鈕事件綁定
+                els.tabSudoku.addEventListener('click', () => switchActiveGame('sudoku'));
+                els.tabMatch3.addEventListener('click', () => switchActiveGame('match3'));
+                els.m3BtnHint.addEventListener('click', handleM3Hint);
+                els.m3BtnShuffle.addEventListener('click', () => shuffleM3Board(false));
+                els.m3BtnDaily.addEventListener('click', () => initMatch3(true));
+                els.m3BtnPractice.addEventListener('click', () => initMatch3(false));
+
                 document.addEventListener('keydown', (e) => {
                     if (els.winModal.classList.contains('show')) return;
                     const size = state.size;
@@ -1607,17 +2304,19 @@
                     updateStatsDisplay();
                     bindEvents();
                     loadPuzzle('6x6', true);
+                    initMatch3(true);
 
-                    // 每秒更新倒數計時；若網頁跨過香港時間上午 09:00，自動設計並載入今日全新題目
                     setInterval(() => {
                         const latest = updateScheduleUI();
                         if (state.currentDailyDateKey && latest.dateKey !== state.currentDailyDateKey) {
                             state.currentDailyDateKey = latest.dateKey;
                             loadPuzzle(state.difficulty, true);
+                            initMatch3(true);
                             setCoachMessage('🌅', '早晨！已經過咗上午 09:00，今日全新嘅每日數獨題目已經自動設計好喇！');
+                            setM3Coach('🌅', '早晨！已經過咗上午 09:00，今日全新嘅萌寵花果消消樂亦已經準備好喇！');
                         }
 
-                        if (!state.isCompleted) {
+                        if (!state.isCompleted && state.activeGame === 'sudoku') {
                             state.elapsedSeconds += 1;
                             if (state.showTimer) {
                                 renderTimerControl();
